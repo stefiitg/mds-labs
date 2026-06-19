@@ -1,0 +1,13 @@
+{
+    "exit_code_by_key": {
+        "mutants.clamp.x_x_clamp__mutmut_orig__mutmut_1": null,
+        "mutants.clamp.x_x_clamp__mutmut_orig__mutmut_2": null,
+        "mutants.clamp.x_x_clamp__mutmut_1__mutmut_1": null,
+        "mutants.clamp.x_x_clamp__mutmut_1__mutmut_2": null,
+        "mutants.clamp.x_x_clamp__mutmut_2__mutmut_1": null,
+        "mutants.clamp.x_x_clamp__mutmut_2__mutmut_2": null
+    },
+    "type_check_error_by_key": {},
+    "durations_by_key": {},
+    "estimated_durations_by_key": {}
+}

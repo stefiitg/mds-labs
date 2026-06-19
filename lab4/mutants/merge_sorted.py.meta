@@ -1,0 +1,25 @@
+{
+    "exit_code_by_key": {
+        "merge_sorted.x_merge_sorted__mutmut_1": null,
+        "merge_sorted.x_merge_sorted__mutmut_2": null,
+        "merge_sorted.x_merge_sorted__mutmut_3": null,
+        "merge_sorted.x_merge_sorted__mutmut_4": null,
+        "merge_sorted.x_merge_sorted__mutmut_5": null,
+        "merge_sorted.x_merge_sorted__mutmut_6": null,
+        "merge_sorted.x_merge_sorted__mutmut_7": null,
+        "merge_sorted.x_merge_sorted__mutmut_8": null,
+        "merge_sorted.x_merge_sorted__mutmut_9": null,
+        "merge_sorted.x_merge_sorted__mutmut_10": null,
+        "merge_sorted.x_merge_sorted__mutmut_11": null,
+        "merge_sorted.x_merge_sorted__mutmut_12": null,
+        "merge_sorted.x_merge_sorted__mutmut_13": null,
+        "merge_sorted.x_merge_sorted__mutmut_14": null,
+        "merge_sorted.x_merge_sorted__mutmut_15": null,
+        "merge_sorted.x_merge_sorted__mutmut_16": null,
+        "merge_sorted.x_merge_sorted__mutmut_17": null,
+        "merge_sorted.x_merge_sorted__mutmut_18": null
+    },
+    "type_check_error_by_key": {},
+    "durations_by_key": {},
+    "estimated_durations_by_key": {}
+}
