@@ -1,0 +1,17 @@
+{% extends "courses/base.html" %}
+
+{% block content %}
+<h2>{{ course.title }}</h2>
+<p><strong>Instructor:</strong> {{ course.instructor }}</p>
+<p><strong>Category:</strong> {{ course.category.name }}</p>
+<p><strong>Year / Semester:</strong> {{ course.year }} / {{ course.get_semester_display }}</p>
+<p><strong>Description:</strong> {{ course.description }}</p>
+<p><strong>Credits:</strong> {{ course.credits }}</p>.
+
+{% if user.is_authenticated %}
+<div style="margin-top: 20px;">
+    <a href="{% url 'course_edit' course.pk %}"><button>Edit Course</button></a>
+    <a href="{% url 'course_delete' course.pk %}"><button>Delete Course</button></a>
+</div>
+{% endif %}
+{% endblock %}
