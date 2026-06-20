@@ -1,0 +1,3 @@
+This is a large text file created to test the word counter program. 
+It contains several duplicate words like test, program, word, text, text, test, test. 
+The program will count the frequencies of these words.

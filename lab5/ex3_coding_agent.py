@@ -40,31 +40,43 @@ tools = [
 
 messages = [{"role": "system", "content": "You are a coding assistant. You can run bash commands to inspect the system or create files."}]
 
-# Aici poți folosi aceeași buclă while True ca la Exercițiul 1
-user_input = "Arată-mi ce fișiere sunt în folderul curent."
-messages.append({"role": "user", "content": user_input})
+print("🤖 Coding Agent pregătit! (ex: 'Arată-mi ce fișiere sunt în folderul curent' sau 'exit' pentru a ieși)")
 
-response = client.chat.completions.create(
-    model="qwen2.5:0.5b",
-    messages=messages,
-    tools=tools,
-)
+while True:
+    user_input = input("\nTu: ")
+    if user_input.lower() in ['exit', 'quit']:
+        break
 
-msg = response.choices[0].message
+    messages.append({"role": "user", "content": user_input})
 
-if msg.tool_calls:
-    messages.append(msg)
-    for tool_call in msg.tool_calls:
-        args = json.loads(tool_call.function.arguments)
-        if tool_call.function.name == "run_command":
-            # Apelăm funcția protejată
-            result = run_command(args["command"])
+    response = client.chat.completions.create(
+        model="mistral",
+        messages=messages,
+        tools=tools,
+    )
+
+    msg = response.choices[0].message
+
+    if msg.tool_calls:
+        messages.append(msg)
+        for tool_call in msg.tool_calls:
+            args = json.loads(tool_call.function.arguments)
+            if tool_call.function.name == "run_command":
+                # Apelăm funcția protejată
+                result = run_command(args["command"])
+            else:
+                result = "Tool necunoscut."
+                
+            messages.append({
+                "role": "tool",
+                "tool_call_id": tool_call.id,
+                "content": result,
+            })
             
-        messages.append({
-            "role": "tool",
-            "tool_call_id": tool_call.id,
-            "content": result,
-        })
-        
-    final_response = client.chat.completions.create(model="qwen2.5:0.5b", messages=messages, tools=tools)
-    print(f"\n🤖 AI: {final_response.choices[0].message.content}")
+        final_response = client.chat.completions.create(model="mistral", messages=messages, tools=tools)
+        reply = final_response.choices[0].message.content
+        print(f"\n🤖 AI: {reply}")
+        messages.append({"role": "assistant", "content": reply})
+    else:
+        print(f"\n🤖 AI: {msg.content}")
+        messages.append({"role": "assistant", "content": msg.content})

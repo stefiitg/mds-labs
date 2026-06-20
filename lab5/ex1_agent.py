@@ -68,9 +68,16 @@ while True:
         
     messages.append({"role": "user", "content": user_input})
     
-    # Trimitem mesajul către LLM
+    # 1. Răspuns FĂRĂ tool calls (simplu)
+    plain_response = client.chat.completions.create(
+        model="mistral",
+        messages=messages
+    )
+    print(f"\n🤖 AI (fără tool-uri): {plain_response.choices[0].message.content}")
+
+    # 2. Răspuns CU tool calls
     response = client.chat.completions.create(
-        model="qwen2.5:0.5b",
+        model="mistral",
         messages=messages,
         tools=tools,
     )
@@ -104,15 +111,19 @@ while True:
             
         # Cerem LLM-ului să formuleze răspunsul final bazat pe rezultatele primite
         final_response = client.chat.completions.create(
-            model="qwen2.5:0.5b",
+            model="mistral",
             messages=messages,
             tools=tools,
         )
         reply = final_response.choices[0].message.content
-        print(f"🤖 AI: {reply}")
+        print(f"\n🤖 AI (cu tool-uri): {reply}")
         messages.append({"role": "assistant", "content": reply})
         
     else:
         # LLM-ul a putut răspunde direct, fără unelte
-        print(f"🤖 AI: {msg.content}")
+        print(f"\n🤖 AI (cu tool-uri): {msg.content}")
         messages.append({"role": "assistant", "content": msg.content})
+
+
+
+      
