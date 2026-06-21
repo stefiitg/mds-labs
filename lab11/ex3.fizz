@@ -1,0 +1,16 @@
+MAX_HOUR=12
+
+action Init:
+  hour = MAX_HOUR
+  meridiem = "am"
+
+atomic action HourChange:
+  hour = (hour % MAX_HOUR) + 1
+  if hour == 12:
+    meridiem = "pm" if meridiem == "am" else "am"
+
+transition assertion ClockBehavior(before, after):
+  if before.meridiem != after.meridiem:
+    return before.hour == MAX_HOUR - 1 and after.hour == MAX_HOUR
+  else:
+    return (before.hour == 12 and after.hour == 1) or (after.hour == before.hour + 1)

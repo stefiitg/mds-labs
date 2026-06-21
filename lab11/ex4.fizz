@@ -1,0 +1,14 @@
+action Init:
+  color = "red"
+
+atomic action ToGreen:
+  require color == "red"
+  color = "green"
+
+atomic action ToYellow:
+  require color == "green"
+  color = "yellow"
+
+atomic action ToRed:
+  require color == "yellow"
+  color = "red"

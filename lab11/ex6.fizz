@@ -1,0 +1,17 @@
+always eventually assertion SafelyShutdown:
+  return status == "shutdown"
+
+action Init:
+  status = "idle"
+
+atomic action Process:
+  if status == "idle":
+    status = "working"
+
+atomic action Finish:
+  if status == "working":
+    status = "idle"
+
+atomic fair<strong> action Shutdown:
+  if status != "working":
+    status = "shutdown"

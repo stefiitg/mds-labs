@@ -1,0 +1,13 @@
+always assertion AlwaysLessThan3:
+  return value <= 2
+
+action Init:
+  value = 0
+  any x in range(-2, 2):
+    value = x
+
+atomic action Add:
+  if value < 2:
+    value += 1
+  else:
+    value = 0

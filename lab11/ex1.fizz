@@ -1,0 +1,8 @@
+action Init:
+  a = 0
+  b = 0
+
+action Add:
+  oneof:
+    a = (a + 1) % 3
+    b = (b + 1) % 3
